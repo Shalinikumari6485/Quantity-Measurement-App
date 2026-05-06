@@ -1,10 +1,12 @@
 package main;
 
-public class UseCase3GenricQuantity {
+public class UseCase4ExtendedUnit {
 
     enum LengthUnit {
         FEET(1.0),
-        INCH(1.0 / 12.0);
+        INCH(1.0 / 12.0),
+        YARD(3.0),
+        CM(0.393701 / 12.0);
 
         private final double toFeet;
 
@@ -50,22 +52,25 @@ public class UseCase3GenricQuantity {
     public static void main(String[] args) {
 
         System.out.println("==========================================");
-        System.out.println("UC3 - Generic Quantity Class (DRY)");
+        System.out.println("UC4 - Extended Unit Support");
         System.out.println("==========================================\n");
 
-        QuantityLength q1 = new QuantityLength(1.0, LengthUnit.FEET);
-        QuantityLength q2 = new QuantityLength(12.0, LengthUnit.INCH);
+        System.out.println("Input: Quantity(1.0, YARD) & Quantity(3.0, FEET)");
+        System.out.println("Output: Equal (" +
+                new QuantityLength(1.0, LengthUnit.YARD)
+                        .equals(new QuantityLength(3.0, LengthUnit.FEET)) + ")");
 
-        System.out.println("Input: Quantity(1.0, FEET) and Quantity(12.0, INCH)");
-        System.out.println("Output: Equal (" + q1.equals(q2) + ")");
+        System.out.println("\nInput: Quantity(1.0, YARD) & Quantity(36.0, INCH)");
+        System.out.println("Output: Equal (" +
+                new QuantityLength(1.0, LengthUnit.YARD)
+                        .equals(new QuantityLength(36.0, LengthUnit.INCH)) + ")");
 
-        QuantityLength q3 = new QuantityLength(1.0, LengthUnit.INCH);
-        QuantityLength q4 = new QuantityLength(1.0, LengthUnit.INCH);
+        System.out.println("\nInput: Quantity(1.0, CM) & Quantity(0.393701, INCH)");
+        System.out.println("Output: Equal (" +
+                new QuantityLength(1.0, LengthUnit.CM)
+                        .equals(new QuantityLength(0.393701, LengthUnit.INCH)) + ")");
 
-        System.out.println("\nInput: Quantity(1.0, INCH) and Quantity(1.0, INCH)");
-        System.out.println("Output: Equal (" + q3.equals(q4) + ")");
-
-        System.out.println("\nUC3 equality check completed...");
+        System.out.println("\nUC4 completed...");
     }
 }
 
